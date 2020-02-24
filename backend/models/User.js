@@ -4,7 +4,15 @@ const PLM = require('passport-local-mongoose');
 const userSchema = new Schema(
   {
     email: String,
-    name: String
+    name: String,
+    genre: {
+      type: String,
+      enum: ['M', 'F']
+    },
+    image: {
+      default: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b7c76929274393.55ead42cd721c.jpg',
+      type: String
+    }
   },
   {
     timestamps: true,
