@@ -7,6 +7,9 @@ import theme from "./theme";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
+require("dotenv").config();
+
+
 function WhitTheme() {
     return (
         <ThemeProvider theme={theme}>

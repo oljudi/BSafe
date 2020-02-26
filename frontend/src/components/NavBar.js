@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <NavLink exact to="/">
       <Flex
-        w="100vw"
+        w="100"
         h="10vh"
         px={5}
         bg="#313131"
