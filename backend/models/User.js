@@ -9,6 +9,7 @@ const userSchema = new Schema(
       type: String,
       enum: ['M', 'F']
     },
+    age: Number,
     image: {
       default: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b7c76929274393.55ead42cd721c.jpg',
       type: String
