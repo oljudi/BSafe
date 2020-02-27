@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 function Form({ width, children, title, submit, bgColor }) {
   
   const flag = () => {
-    if(title === 'signup') return true
-    return false
+    if(title === 'Signup') {return true}
+    else if(title === 'Login') {return false}
   }
 
   return (

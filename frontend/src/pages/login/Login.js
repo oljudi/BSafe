@@ -1,59 +1,105 @@
-import React from 'react'
-import { Flex, Heading, Stack, InputGroup, InputLeftElement, Input, InputRightElement, Button} from '@chakra-ui/core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import {
+  Flex,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  InputRightElement,
+  Button,
+  useToast,
+  FormControl
+} from "@chakra-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
+import { MyContext } from "../../context";
+import Form from "../../components/Form";
 
-function Login() {
-  const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
+function Login({history}) {
+  const context = useContext(MyContext);
+  const toast = useToast();
 
-    return (
-      <Flex w="100" h="80vh" align="center" justify="center">
-        <Flex bg="tomato" w="80%" h="80%" p={4}>
-          <Stack>
-          <Heading as="h2" size="xl">
-            LOGIN
-          </Heading>
-            <InputGroup>
-              <InputLeftElement
-                children={
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    size="1x"
-                    color="gray"
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
+  const login = e => {
+    context
+      .handleLoginSubmit(e)
+      .then(res => {
+        toast({
+          title: `Welcome! ${res.user.name}`,
+          status: "success",
+          duration: 5000,
+          isClosable: true
+        });
+        history.push("/profile");
+      })
+      .catch(err => {
+        toast({
+          title: "ERROR",
+          description: err
+        });
+      });
+  };
+
+  return (
+    <MyContext.Consumer>
+      {context => {
+        return (
+          <Flex
+            backgroundColor="#110D40"
+            w="100vw"
+            h="90vh"
+            align="center"
+            justify="center"
+          >
+            <Form submit={login} bgColor="transparent" title="Login">
+              <FormControl isRequired>
+                <InputGroup>
+                  <InputLeftElement
+                    children={
+                      <FontAwesomeIcon
+                        icon={faEnvelope}
+                        size="1x"
+                        color="gray"
+                      />
+                    }
                   />
-                }
-              />
-              <Input type="email" placeholder="Email" />
-            </InputGroup>
-            <InputGroup>
-              <InputLeftElement
-                children={
-                  <FontAwesomeIcon
-                    icon={faKey}
-                    size='1x'
-                    color='gray'
+                  <Input
+                    name="email"
+                    value={context.state.formLogin.email}
+                    onChange={context.handleLoginInput}
+                    type="email"
+                    placeholder="Email"
                   />
-                }
-              />
-              <Input type={show ? 'text' : 'password'} placeholder="Password" />
-              <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <Button
-              variantColor='red'
-            >
-              Login
-            </Button>
-            <p>Not an account yer? - <Link to='/signup' >SignUp</Link> </p>
-          </Stack>
-        </Flex>
-      </Flex>
-    );
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <InputLeftElement
+                    children={
+                      <FontAwesomeIcon icon={faKey} size="1x" color="gray" />
+                    }
+                  />
+                  <Input
+                    type={show ? "text" : "password"}
+                    name="password"
+                    value={context.state.formLogin.password}
+                    onChange={context.handleLoginInput}
+                    placeholder="Password"
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleClick}>
+                      {show ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
+            </Form>
+          </Flex>
+        );
+      }}
+    </MyContext.Consumer>
+  );
 }
 
-export default Login
+export default Login;

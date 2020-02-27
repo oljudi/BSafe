@@ -12,7 +12,42 @@ class MyProvider extends Component {
       password: '',
       genre: '',
       age: 18
-    }
+    },
+    formLogin:{
+      email: '',
+      password: ''
+    },
+    loggedUser: null,
+    isLogged: false
+  };
+
+  handleLoginInput = e => {
+    const {formLogin} = this.state
+    const {name, value} = e.target
+    formLogin[name] = value
+    this.setState({formLogin})
+  }
+
+  handleLoginSubmit = async e => {
+    e.preventDefault();
+    const form = this.state.formLogin;
+    return AUTH_SERVICE.login(form)
+      .then(({data: {user}}) => {
+        this.setState({
+          loggedUser: user,
+          isLogged: true
+        });
+        return { user ,msg: "logged" };
+      })
+      .catch(err => {
+        this.setState({
+          loggedUser: null,
+          isLogged: false,
+          formLogin: { email: "", password: "" }
+        });
+        return { user: null, msg: "Invalid username/password." };
+      })
+      .finally(() => this.setState({ formLogin: { email: "", password: "" } }));
   };
 
   handleSignupInput = e => {
@@ -39,7 +74,9 @@ class MyProvider extends Component {
       state,
       handleSignupInput,
       handleSignupSubmit,
-      handleInputNumber
+      handleInputNumber,
+      handleLoginInput,
+      handleLoginSubmit
     } = this;
     return (
       <MyContext.Provider
@@ -47,7 +84,9 @@ class MyProvider extends Component {
           state,
           handleSignupInput,
           handleSignupSubmit,
-          handleInputNumber
+          handleInputNumber,
+          handleLoginInput,
+          handleLoginSubmit
         }}
       >
         {this.props.children}
