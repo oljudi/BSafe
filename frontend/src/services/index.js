@@ -23,6 +23,9 @@ const MY_SERVICE = {
   createContact: async contact => {
     return await SERVICE.post("/contacts/create", contact);
   },
+  deleteContact: async id => {
+    return await SERVICE.delete(`/contacts/delete/${id}`);
+  },
   getContacts: async () => {
     const { data } = await SERVICE.get("/contacts/getContacts");
     return data;

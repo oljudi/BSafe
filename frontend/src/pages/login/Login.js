@@ -34,7 +34,6 @@ function Login({history}) {
         history.push("/profile");
       })
       .catch(err => {
-        console.log(err)
         toast({
           title: "Please, try again!",
           description:'Username or password Incorrect!!',

@@ -27,6 +27,10 @@ class MyProvider extends Component {
     contacts: null
   };
 
+  handleDeleteContact = async e => {
+    return await AUTH_SERVICE.deleteContact(e)
+  }
+
   handleContactInput = e => {
     const { formContact } = this.state;
     const { name, value } = e.target;
@@ -101,7 +105,7 @@ class MyProvider extends Component {
   render() {
     const {
       state,
-      contacts,
+      handleDeleteContact,
       handleUpdateContacts,
       handleContactSubmit,
       handleContactInput,
@@ -115,7 +119,7 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
-          contacts,
+          handleDeleteContact,
           handleUpdateContacts,
           handleContactSubmit,
           handleContactInput,

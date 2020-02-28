@@ -30,18 +30,12 @@ function Contact({history}) {
         history.push("/profile/contacts");
       })
       .catch(err => {
-        console.log(err);
         toast({
           title: "Please, try again!",
           description: "Can't create contact",
-              status: "error"
+          status: "error"
         });
       });
-  }
-
-  const update = e => {
-      context
-        .updateContactState(e)
   }
 
   return (

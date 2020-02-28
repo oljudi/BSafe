@@ -30,4 +30,10 @@ router.get('/getContacts', isLoggedIn, async (req,res,next) => {
     res.status(200).json({contacts})
 })
 
+router.delete("/delete/:id", isLoggedIn, async(req,res,next) => {
+    const {id} = req.params
+    await Contact.findByIdAndDelete(id)
+    res.status(200).json({msg: 'Delete Contact'})
+});
+
 module.exports = router;
