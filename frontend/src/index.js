@@ -31,4 +31,4 @@ function WhitContext() {
 
 ReactDOM.render(<WhitContext />, document.getElementById('root'));
 
-serviceWorker.unregister();
+serviceWorker.register()

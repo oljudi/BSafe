@@ -34,9 +34,11 @@ function Login({history}) {
         history.push("/profile");
       })
       .catch(err => {
+        console.log(err)
         toast({
-          title: "ERROR",
-          description: err
+          title: "Please, try again!",
+          description:'Username or password Incorrect!!',
+          status: "error"
         });
       });
   };

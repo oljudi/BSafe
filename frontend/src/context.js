@@ -1,43 +1,70 @@
 import React, { Component, createContext } from "react";
 import { withRouter } from "react-router-dom";
-import AUTH_SERVICE from './services/auth'
+import AUTH_SERVICE from "./services/index";
 
 export const MyContext = createContext();
 
 class MyProvider extends Component {
   state = {
-    formSignup:{
-      name: '',
-      email: '',
-      password: '',
-      genre: '',
+    formSignup: {
+      name: "",
+      email: "",
+      password: "",
+      genre: "",
       age: 18
     },
-    formLogin:{
-      email: '',
-      password: ''
+    formLogin: {
+      email: "",
+      password: ""
+    },
+    formContact: {
+      name: "",
+      email: "",
+      phone: ""
     },
     loggedUser: null,
-    isLogged: false
+    isLogged: false,
+    contacts: null
+  };
+
+  handleContactInput = e => {
+    const { formContact } = this.state;
+    const { name, value } = e.target;
+    formContact[name] = value;
+    this.setState({ formContact });
+  };
+
+  handleContactSubmit = async e => {
+    e.preventDefault();
+    const form = this.state.formContact;
+    this.setState({ formContact: { name: "", email: "", phone: "" } });
+    return await AUTH_SERVICE.createContact(form);
   };
 
   handleLoginInput = e => {
-    const {formLogin} = this.state
-    const {name, value} = e.target
-    formLogin[name] = value
-    this.setState({formLogin})
-  }
+    const { formLogin } = this.state;
+    const { name, value } = e.target;
+    formLogin[name] = value;
+    this.setState({ formLogin });
+  };
 
-  handleLoginSubmit = async e => {
+  handleUpdateContacts = async e => {
+    const { contacts } = await AUTH_SERVICE.getContacts();
+    this.setState({ contacts });
+  };
+
+  handleLoginSubmit = e => {
     e.preventDefault();
     const form = this.state.formLogin;
     return AUTH_SERVICE.login(form)
-      .then(({data: {user}}) => {
+      .then(async ({ data: { user } }) => {
+        const { contacts } = await AUTH_SERVICE.getContacts();
+        this.setState({ contacts });
         this.setState({
           loggedUser: user,
           isLogged: true
         });
-        return { user ,msg: "logged" };
+        return { user, msg: "logged" };
       })
       .catch(err => {
         this.setState({
@@ -51,27 +78,33 @@ class MyProvider extends Component {
   };
 
   handleSignupInput = e => {
-    const {formSignup} = this.state
-    const {name, value} = e.target
-    formSignup[name] = value
-    this.setState({formSignup})
-  }
+    const { formSignup } = this.state;
+    const { name, value } = e.target;
+    formSignup[name] = value;
+    this.setState({ formSignup });
+  };
 
   handleInputNumber = value => {
-    const {formSignup} = this.state
-    formSignup['age'] = value
-    this.setState({formSignup})
-  }
+    const { formSignup } = this.state;
+    formSignup["age"] = value;
+    this.setState({ formSignup });
+  };
   handleSignupSubmit = async e => {
-    e.preventDefault()
-    const form = this.state.formSignup
-    this.setState({formSignup: {name: '', email: '', password: '', genre: '', age: 0}})
-    return await AUTH_SERVICE.signup(form)
-  }
+    e.preventDefault();
+    const form = this.state.formSignup;
+    this.setState({
+      formSignup: { name: "", email: "", password: "", genre: "", age: 0 }
+    });
+    return await AUTH_SERVICE.signup(form);
+  };
 
   render() {
     const {
       state,
+      contacts,
+      handleUpdateContacts,
+      handleContactSubmit,
+      handleContactInput,
       handleSignupInput,
       handleSignupSubmit,
       handleInputNumber,
@@ -82,6 +115,10 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          contacts,
+          handleUpdateContacts,
+          handleContactSubmit,
+          handleContactInput,
           handleSignupInput,
           handleSignupSubmit,
           handleInputNumber,

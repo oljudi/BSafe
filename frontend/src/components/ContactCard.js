@@ -1,18 +1,38 @@
 import React from "react";
-import { Box, Heading, Button } from "@chakra-ui/core";
+import { Button, Flex, Text, Stack } from "@chakra-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-function ContactCard() {
+function ContactCard({contact}) {
   return (
-    <>
-      <Box bg="tomato" w="100%" p={4}>
-        <Button variantColor='red'><FontAwesomeIcon icon={faMinus} size='1x'/></Button>
-        <p>Name: </p> <Heading as="h5">Diego Olvera</Heading>
-        <p>Email: </p> <Heading as="h5">correo@correo.com</Heading>
-        <p>Phone: </p> <Heading as="h5">5554743476</Heading>
-      </Box>
-    </>
+    <Stack bg="gray.800" w="400px" p={4} mb={3}>
+      <Flex justify="flex-end">
+        <Link to="/contact/delete">
+          <Button variantColor="red" borderRadius="80px">
+            <FontAwesomeIcon icon={faMinus} size="1x" />
+          </Button>
+        </Link>
+      </Flex>
+      <Flex p={1}>
+        <Text fontSize="lg">Name: </Text>
+        <Text fontSize="2xl" ml={8}>
+          {contact.name}
+        </Text>
+      </Flex>
+      <Flex p={1}>
+        <Text fontSize="lg">Email: </Text>
+        <Text fontSize="2xl" ml={8}>
+          {contact.email}
+        </Text>
+      </Flex>
+      <Flex p={1}>
+        <Text fontSize="lg">Phone: </Text>
+        <Text fontSize="2xl" ml={8}>
+          {contact.phone}
+        </Text>
+      </Flex>
+    </Stack>
   );
 }
 
