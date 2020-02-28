@@ -1,13 +1,8 @@
 import React from "react";
-import { Box, Stack, Heading, Button, Text } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
+import { Box, Stack, Heading, Button} from "@chakra-ui/core";
 
 function Form({ width, children, title, submit, bgColor }) {
-  
-  const flag = () => {
-    if(title === 'Signup') {return true}
-    else if(title === 'Login') {return false}
-  }
+
 
   return (
     <Box
@@ -25,16 +20,6 @@ function Form({ width, children, title, submit, bgColor }) {
         <Button backgroundColor="#CA3E47" type="submit" color="white">
           {title}
         </Button>
-        {flag && (
-          <Text fontSize="sm" color="white">
-            Already an account? - <Link to="/login">Login</Link>
-          </Text>
-        )}
-        {!flag && (
-          <Text fontSize="sm" color="white">
-            Not an account? - <Link to="/signup">Register here!</Link>
-          </Text>
-        )}
       </Stack>
     </Box>
   );

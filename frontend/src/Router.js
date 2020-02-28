@@ -9,6 +9,7 @@ import Signup from './pages/signup/Signup';
 import Profile from './pages/profile/Profile';
 import Contacts from './pages/contacts/Contacts';
 import Contact from './pages/contact/Contact';
+import SearchMap from './pages/searchMap/SearchMap';
 
 // const loginDummy = () => <h1>Login Dummy</h1>
 // const signupDummy = () => <h1>SignUp Dummy</h1>
@@ -25,8 +26,9 @@ const Router = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/profile" component={Profile} />
+      <Route exact path="/search" component={SearchMap} />
       <Route exact path="/profile/contacts" component={Contacts} />
-      <Route exact path='/contact/new' component={Contact}/>
+      <Route exact path="/contact/new" component={Contact} />
       <Route component={NotFound} />
     </Switch>
     <Footer />

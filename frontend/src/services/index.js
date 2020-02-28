@@ -3,7 +3,7 @@ let baseURL;
 
 process.env.NODE_ENV === "production"
   ? (baseURL = "here should be your production endpoint")
-  : (baseURL = "http://192.168.18.94:3000");
+  : (baseURL = "http://localhost:3000");
 
 const SERVICE = axios.create({ withCredentials: true, baseURL });
 

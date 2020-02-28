@@ -4,7 +4,7 @@ import MAP_SERVICE from "../../services/map";
 
 const style = {
   width: "100vw",
-  height: "calc(100vh - 80px)",
+  height: "80vh",
   position: "absolute"
 };
 
@@ -48,7 +48,16 @@ const Home = () => {
                 ]
               }
             }
-          });
+          })
+          map.addControl(
+            new mapboxgl.GeolocateControl({
+              positionOptions: {
+                enableHighAccuracy: true
+              },
+              position: 'bottom',
+              trackUserLocation: true
+            })
+          );
           setMap(map);
           map.resize();
         });

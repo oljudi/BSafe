@@ -27,6 +27,12 @@ class MyProvider extends Component {
     contacts: null
   };
 
+  handleLogOut = async () => {
+    await AUTH_SERVICE.logOut()
+    this.props.history.push('/')
+    this.setState({loggedUser: null, isLogged: false})
+  }
+
   handleDeleteContact = async e => {
     return await AUTH_SERVICE.deleteContact(e)
   }
@@ -105,6 +111,7 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      handleLogOut,
       handleDeleteContact,
       handleUpdateContacts,
       handleContactSubmit,
@@ -119,6 +126,7 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          handleLogOut,
           handleDeleteContact,
           handleUpdateContacts,
           handleContactSubmit,
