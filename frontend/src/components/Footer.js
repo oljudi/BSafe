@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapMarkerAlt,
   faSignInAlt,
-  faSearchLocation,
   faExclamationCircle,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { MyContext } from "../context";
@@ -28,15 +28,7 @@ function Footer() {
               bottom="0"
               position="fixed"
             >
-              <Link to="/search">
-                {/*Create the route to seach start and end location*/}
-                <FontAwesomeIcon
-                  icon={faSearchLocation}
-                  size="2x"
-                  color="white"
-                />
-              </Link>
-              <Link to="/">
+              <Link to="/addPlaces"> 
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
                   size="2x"
@@ -66,12 +58,8 @@ function Footer() {
                 bottom="0"
                 position="fixed"
               >
-                <Link to="/search">
-                  <FontAwesomeIcon
-                    icon={faSearchLocation}
-                    size="2x"
-                    color="white"
-                  />
+                <Link to="/c5view">
+                  <FontAwesomeIcon icon={faEye} size='2x' color='white'/>
                 </Link>
                 <Link to="/login">
                   <FontAwesomeIcon icon={faSignInAlt} size="2x" color="white" />

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
-import MAP_SERVICE from "../../services/map";
+import MAP_CCINCO from "../../services/mapc5";
+import "./C5.css";
 
 const style = {
   width: "100vw",
@@ -8,7 +9,7 @@ const style = {
   position: "absolute"
 };
 
-const Home = () => {
+const Ccinco = () => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
@@ -26,35 +27,22 @@ const Home = () => {
           center: [-99.1353989, 19.4326018],
           zoom: 10
         });
-        MAP_SERVICE.heatmap().then(res => {
-          map.on("load", () => {
-            map.addSource("data", {
-              type: "geojson",
-              data: res.data
-            });
-            map.addLayer({
-              id: "danger",
-              type: "heatmap",
-              source: "data",
-              maxzoom: 24,
-              paint: {
-                "heatmap-intensity": {
-                  stops: [
-                    [15, 1],
-                    [15, 3]
-                  ]
-                },
-                "heatmap-opacity": {
-                  default: 1,
-                  stops: [
-                    [14, 1],
-                    [15, 0]
-                  ]
-                }
-              }
-            });
-            setMap(map);
-            map.resize();
+        MAP_CCINCO.map().then(res => {
+          res.data.features.forEach(function(marker) {
+            const el = document.createElement("div");
+            el.className = "marker";
+            new mapboxgl.Marker(el)
+              .setLngLat(marker.geometry.coordinates)
+              .setPopup(
+                new mapboxgl.Popup({ offset: 25 }).setHTML(
+                  "<h3>" +
+                    "C5 Camera" +
+                    "</h3><p>" +
+                    marker.properties.estatus_conectividad +
+                    "</p>"
+                )
+              )
+              .addTo(map);
           });
         });
       }
@@ -65,4 +53,4 @@ const Home = () => {
   return <div ref={el => (mapContainer.current = el)} style={style} />;
 };
 
-export default Home;
+export default Ccinco;

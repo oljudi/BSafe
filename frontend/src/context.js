@@ -6,6 +6,13 @@ export const MyContext = createContext();
 
 class MyProvider extends Component {
   state = {
+    viewport: {
+      width: 400,
+      height: 400,
+      latitude: 19.4326018,
+      longitude: -99.1353989,
+      zoom: 11
+    },
     formSignup: {
       name: "",
       email: "",
@@ -27,15 +34,24 @@ class MyProvider extends Component {
     contacts: null
   };
 
-  handleLogOut = async () => {
-    await AUTH_SERVICE.logOut()
-    this.props.history.push('/')
-    this.setState({loggedUser: null, isLogged: false})
+  updateViewPort = newViewPort => {
+    this.setState({viewport: newViewPort})
   }
 
+  handleOnSelectMap = (viewport) => {
+    this.setState({ viewport });
+    console.log("Selected from context: ", this.state);
+  };
+
+  handleLogOut = async () => {
+    await AUTH_SERVICE.logOut();
+    this.props.history.push("/");
+    this.setState({ loggedUser: null, isLogged: false });
+  };
+
   handleDeleteContact = async e => {
-    return await AUTH_SERVICE.deleteContact(e)
-  }
+    return await AUTH_SERVICE.deleteContact(e);
+  };
 
   handleContactInput = e => {
     const { formContact } = this.state;
@@ -111,6 +127,8 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      updateViewPort,
+      handleOnSelectMap,
       handleLogOut,
       handleDeleteContact,
       handleUpdateContacts,
@@ -126,7 +144,9 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          updateViewPort,
           handleLogOut,
+          handleOnSelectMap,
           handleDeleteContact,
           handleUpdateContacts,
           handleContactSubmit,
