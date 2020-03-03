@@ -33,6 +33,9 @@ const MY_SERVICE = {
   createPlace: async place => {
     return await SERVICE.post("/safePlace/create", place);
   },
+  deletePlace: async id => {
+    return await SERVICE.delete(`/safePlace/delete/${id}`)
+  },
   getPlaces: async () => {
     const { data } = await SERVICE.get("/safePlace/getPlaces");
     return data

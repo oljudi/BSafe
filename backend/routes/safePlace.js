@@ -36,4 +36,15 @@ router.get('/getPlaces', isLoggedIn, async (req,res,next) => {
     res.status(200).json({places})
 })
 
+router.get('/getAllPlaces', async(req,res,next) => {
+  const places = await Place.find()
+  res.status(200).json({places})
+})
+
+router.delete('/delete/:id', isLoggedIn, async (req,res,next) => {
+  const {id} = req.params
+  await Place.findByIdAndDelete(id)
+  res.status(200).json({msg: 'Delete Place'})
+})
+
 module.exports = router;

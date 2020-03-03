@@ -28,7 +28,10 @@ function Footer() {
               bottom="0"
               position="fixed"
             >
-              <Link to="/addPlaces"> 
+              <Link to="/c5view">
+                <FontAwesomeIcon icon={faEye} size="2x" color="white" />
+              </Link>
+              <Link to="/addPlaces">
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
                   size="2x"
@@ -36,13 +39,13 @@ function Footer() {
                 />
               </Link>
               <Box>
-              <Button variantColor='transparent'>
-                <FontAwesomeIcon
-                  icon={faExclamationCircle}
-                  size="3x"
-                  color="#CA3E47"
-                />
-              </Button>
+                <Button variantColor="transparent">
+                  <FontAwesomeIcon
+                    icon={faExclamationCircle}
+                    size="3x"
+                    color="#CA3E47"
+                  />
+                </Button>
               </Box>
             </Flex>
           );

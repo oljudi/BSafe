@@ -48,7 +48,7 @@ function Contacts({ history }) {
                       h="70px"
                       w="70px"
                     >
-                      <FontAwesomeIcon icon={faPlus} size="2x" />{" "}
+                      <FontAwesomeIcon icon={faPlus} size="2x" />
                     </Button>
                   </Link>
                 </Flex>

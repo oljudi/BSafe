@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import MAP_SERVICE from "../../services/map";
+import PLACE_SERVICE from "../../services/index";
+import "./Home.css";
 
 const style = {
   width: "100vw",
@@ -25,6 +27,25 @@ const Home = () => {
           style: "mapbox://styles/mapbox/dark-v10",
           center: [-99.1353989, 19.4326018],
           zoom: 10
+        });
+        PLACE_SERVICE.getPlaces().then(res => {
+          console.log(res);
+          res.places.forEach(function(marker) {
+            const el = document.createElement("div");
+            el.className = "markerSafe";
+            new mapboxgl.Marker(el)
+              .setLngLat(marker.geometry.coordinates)
+              .setPopup(
+                new mapboxgl.Popup({ offset: 25 }).setHTML(
+                  "<h3>" +
+                    marker.name +
+                    "</h3><p>" +
+                    marker.description +
+                    "</p>"
+                )
+              )
+              .addTo(map);
+          });
         });
         MAP_SERVICE.heatmap().then(res => {
           map.on("load", () => {

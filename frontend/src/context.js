@@ -41,7 +41,11 @@ class MyProvider extends Component {
     places: null
   };
 
-  handleUpdatePlaces = async e => {
+  handleDeletePlace = async e => {
+    return await AUTH_SERVICE.deletePlace(e)
+  }
+
+  handleUpdatePlaces = async () => {
     const { places } = await AUTH_SERVICE.getPlaces();
     this.setState({ places });
   };
@@ -108,7 +112,7 @@ class MyProvider extends Component {
     this.setState({ formLogin });
   };
 
-  handleUpdateContacts = async e => {
+  handleUpdateContacts = async () => {
     const { contacts } = await AUTH_SERVICE.getContacts();
     this.setState({ contacts });
   };
@@ -120,6 +124,8 @@ class MyProvider extends Component {
       .then(async ({ data: { user } }) => {
         const { contacts } = await AUTH_SERVICE.getContacts();
         this.setState({ contacts });
+        const { places } = await AUTH_SERVICE.getPlaces();
+        this.setState({ places });
         this.setState({
           loggedUser: user,
           isLogged: true
@@ -161,6 +167,7 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      handleDeletePlace,
       handleUpdatePlaces,
       handleSafePlaceSubmit,
       handleSafePlaceInput,
@@ -181,6 +188,7 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          handleDeletePlace,
           handleUpdatePlaces,
           handleSafePlaceSubmit,
           handleSafePlaceInput,
