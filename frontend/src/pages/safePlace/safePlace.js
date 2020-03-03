@@ -65,7 +65,8 @@ const SafePlace = ({history}) => {
   return (
     <MyContext.Consumer>
       {context => {
-        const { viewport } = context.state;
+        const { viewport, isLogged } = context.state;
+        if(isLogged) 
         return (
           <Flex backgroundColor="#110D40" w="100vw" h="90vh" justify="center">
             <Stack>
@@ -127,6 +128,9 @@ const SafePlace = ({history}) => {
             </Stack>
           </Flex>
         );
+        else {
+          history.push('/login')
+        }
       }}
     </MyContext.Consumer>
   );

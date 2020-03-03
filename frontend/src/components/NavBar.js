@@ -98,7 +98,7 @@ function NavBar() {
                         <Link to="/profile/contacts">My Safe Contacts</Link>
                         <br />
                         <br />
-                        <Link to="/addPlaces">My Safe Places</Link>
+                        <Link to="/profile/places">My Safe Places</Link>
                         {/* TODO: Routes to app functionalities*/}
                       </DrawerBody>
 

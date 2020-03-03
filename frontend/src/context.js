@@ -32,36 +32,49 @@ class MyProvider extends Component {
     formSafePlace: {
       geometry: null,
       properties: null,
-      name: '',
-      description: ''
+      name: "",
+      description: ""
     },
     loggedUser: null,
     isLogged: false,
-    contacts: null
+    contacts: null,
+    places: null
+  };
+
+  handleUpdatePlaces = async e => {
+    const { places } = await AUTH_SERVICE.getPlaces();
+    this.setState({ places });
   };
 
   updateViewPort = newViewPort => {
-    this.setState({viewport: newViewPort})
-  }
+    this.setState({ viewport: newViewPort });
+  };
 
   handleSafePlaceSubmit = async e => {
-    e.preventDefault()
-    const form = this.state.formSafePlace
-    this.setState({formSafePlace: {name: '', description: '', geometry: null, properties: null}})
-    return await AUTH_SERVICE.createPlace(form)
-  }
+    e.preventDefault();
+    const form = this.state.formSafePlace;
+    this.setState({
+      formSafePlace: {
+        name: "",
+        description: "",
+        geometry: null,
+        properties: null
+      }
+    });
+    return await AUTH_SERVICE.createPlace(form);
+  };
 
   handleSafePlaceInput = e => {
-    const {formSafePlace} = this.state
-    const {name,value} = e.target
-    formSafePlace[name] = value
-    this.setState({formSafePlace})
-  }
+    const { formSafePlace } = this.state;
+    const { name, value } = e.target;
+    formSafePlace[name] = value;
+    this.setState({ formSafePlace });
+  };
 
-  handleOnSelectMap = (viewport,item) => {
+  handleOnSelectMap = (viewport, item) => {
     this.setState({ viewport });
-    const {properties, geometry} = item
-    this.setState({formSafePlace: {properties, geometry}})
+    const { properties, geometry } = item;
+    this.setState({ formSafePlace: { properties, geometry } });
   };
 
   handleLogOut = async () => {
@@ -148,6 +161,7 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      handleUpdatePlaces,
       handleSafePlaceSubmit,
       handleSafePlaceInput,
       updateViewPort,
@@ -167,6 +181,7 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          handleUpdatePlaces,
           handleSafePlaceSubmit,
           handleSafePlaceInput,
           updateViewPort,
