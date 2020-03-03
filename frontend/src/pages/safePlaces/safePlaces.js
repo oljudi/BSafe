@@ -26,7 +26,7 @@ function SafePlaces({ history }) {
                 <Heading as="h5" p={4}>
                   Safe Places
                 </Heading>
-                <Stack h="55vh" overflow="scroll">
+                <Stack h="55vh" w="90vw" overflow="scroll">
                   {places.map((e, i) => {
                     return <PlaceCard key={i} place={e} />;
                   })}

@@ -41,15 +41,15 @@ function NavBar() {
         const { isLogged, loggedUser } = context.state;
         if (isLogged)
           return (
-              <Flex
-                w="100"
-                h="10vh"
-                px={5}
-                bg="#313131"
-                alignItems="center"
-                justify="space-between"
-              >
-                <NavLink exact to='/'>
+            <Flex
+              w="100"
+              h="10vh"
+              px={5}
+              bg="#313131"
+              alignItems="center"
+              justify="space-between"
+            >
+              <NavLink exact to="/">
                 <Flex
                   flexDirection="row"
                   justifyContent="center"
@@ -64,62 +64,61 @@ function NavBar() {
                     BSafe
                   </Heading>
                 </Flex>
-                </NavLink>
-                <Box>
-                  <Button
-                    ref={btnRef}
-                    variantColor="transparent"
-                    onClick={onOpen}
-                  >
-                    <FontAwesomeIcon icon={faBars} size="2x" color="#CA3E47" />
-                  </Button>
-                  <Drawer
-                    isOpen={isOpen}
-                    placement="right"
-                    onClose={onClose}
-                    finalFocusRef={btnRef}
-                  >
-                    <DrawerOverlay />
-                    <DrawerContent>
-                      <DrawerCloseButton />
-                      <DrawerHeader>
-                        <Stack isInline>
-                          <Avatar
-                            name={loggedUser.name}
-                            src={loggedUser.image}
-                          />
-                        </Stack>
-                      </DrawerHeader>
+              </NavLink>
+              <Box>
+                <Button
+                  ref={btnRef}
+                  variantColor="transparent"
+                  onClick={onOpen}
+                >
+                  <FontAwesomeIcon icon={faBars} size="2x" color="#CA3E47" />
+                </Button>
+                <Drawer
+                  isOpen={isOpen}
+                  placement="right"
+                  onClose={onClose}
+                  finalFocusRef={btnRef}
+                >
+                  <DrawerOverlay />
+                  <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerHeader>
+                      <Stack isInline>
+                        <Avatar name={loggedUser.name} src={loggedUser.image} />
+                      </Stack>
+                    </DrawerHeader>
 
-                      <DrawerBody>
-                        <Link to="/profile">Profile</Link>
-                        <br />
-                        <br />
-                        <Link to="/profile/contacts">My Safe Contacts</Link>
-                        <br />
-                        <br />
-                        <Link to="/profile/places">My Safe Places</Link>
-                        {/* TODO: Routes to app functionalities*/}
-                      </DrawerBody>
+                    <DrawerBody>
+                      <Link to="/">Home</Link>
+                      <br />
+                      <br />
+                      <Link to="/profile">Profile</Link>
+                      <br />
+                      <br />
+                      <Link to="/profile/contacts">My Safe Contacts</Link>
+                      <br />
+                      <br />
+                      <Link to="/profile/places">My Safe Places</Link>
+                    </DrawerBody>
 
-                      <DrawerFooter>
-                        <Text fontSize="md">
-                          Ironhack WDFT 2020 - @oljudi
-                          <FontAwesomeIcon icon={faGithub} />
-                        </Text>
-                        <Button
-                          variant="outline"
-                          variantColor="red"
-                          mr={3}
-                          onClick={logout}
-                        >
-                          LogOut
-                        </Button>
-                      </DrawerFooter>
-                    </DrawerContent>
-                  </Drawer>
-                </Box>
-              </Flex>
+                    <DrawerFooter>
+                      <Text fontSize="md">
+                        Ironhack WDFT 2020 - @oljudi
+                        <FontAwesomeIcon icon={faGithub} />
+                      </Text>
+                      <Button
+                        variant="outline"
+                        variantColor="red"
+                        mr={3}
+                        onClick={logout}
+                      >
+                        LogOut
+                      </Button>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </Box>
+            </Flex>
           );
         else {
           return (

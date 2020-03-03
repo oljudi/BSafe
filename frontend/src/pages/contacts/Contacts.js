@@ -29,7 +29,7 @@ function Contacts({ history }) {
                 <Heading as="h5" p={4}>
                   Safe Contacts
                 </Heading>
-                <Stack h='55vh' overflow='scroll'>
+                <Stack h='55vh' w='90vw' overflow='scroll'>
                 {contacts.map((e,i) => {
                   return (
                     <ContactCard

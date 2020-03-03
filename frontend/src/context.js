@@ -41,9 +41,13 @@ class MyProvider extends Component {
     places: null
   };
 
+  handleHelpRequest = async () => {
+    return await AUTH_SERVICE.sendSMS();
+  };
+
   handleDeletePlace = async e => {
-    return await AUTH_SERVICE.deletePlace(e)
-  }
+    return await AUTH_SERVICE.deletePlace(e);
+  };
 
   handleUpdatePlaces = async () => {
     const { places } = await AUTH_SERVICE.getPlaces();
@@ -167,6 +171,7 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      handleHelpRequest,
       handleDeletePlace,
       handleUpdatePlaces,
       handleSafePlaceSubmit,
@@ -188,6 +193,7 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          handleHelpRequest,
           handleDeletePlace,
           handleUpdatePlaces,
           handleSafePlaceSubmit,

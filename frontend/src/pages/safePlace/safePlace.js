@@ -21,7 +21,7 @@ const mapAccess = {
 };
 
 const mapStyle = {
-  width: "79vw",
+  width: "200px",
   height: "20vh",
   position: "absolute"
 };
@@ -38,6 +38,7 @@ const SafePlace = ({history}) => {
     context
       .handleSafePlaceSubmit(e)
       .then(res => {
+        context.handleUpdatePlaces().then().catch()
         toast({
           title: 'Place Created',
           status: 'success',
@@ -68,7 +69,7 @@ const SafePlace = ({history}) => {
         const { viewport, isLogged } = context.state;
         if(isLogged) 
         return (
-          <Flex backgroundColor="#110D40" w="100vw" h="90vh" justify="center">
+          <Flex backgroundColor="gray.600" w="100vw" h="90vh" justify="center">
             <Stack>
               <Form
                 submit={addPlace}

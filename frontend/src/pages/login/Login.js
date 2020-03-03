@@ -28,12 +28,6 @@ function Login({history}) {
     context
       .handleLoginSubmit(e)
       .then(res => {
-        toast({
-          title: `Welcome! ${res.user.name}`,
-          status: "success",
-          duration: 5000,
-          isClosable: true
-        });
         history.push("/");
       })
       .catch(err => {

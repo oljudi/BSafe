@@ -43,6 +43,9 @@ const MY_SERVICE = {
   getAllPlaces: async () => {
     const {data} = await SERVICE.get('/safePlace/getAllPlaces')
     return data
+  },
+  sendSMS: async () => {
+    return await SERVICE.get('/sms/send-text')
   }
 };
 
