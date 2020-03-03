@@ -48,9 +48,11 @@ app.use(logger('dev'));
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const contacts = require('./routes/contacts') 
+const places = require('./routes/safePlace')
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/contacts', contacts)
+app.use('/safeplace', places)
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

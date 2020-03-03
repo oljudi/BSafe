@@ -19,6 +19,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Contact'
       }
+    ],
+    places: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Place'
+      }
     ]
   },
   {

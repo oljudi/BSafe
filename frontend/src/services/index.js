@@ -29,6 +29,13 @@ const MY_SERVICE = {
   getContacts: async () => {
     const { data } = await SERVICE.get("/contacts/getContacts");
     return data;
+  },
+  createPlace: async place => {
+    return await SERVICE.post("/safePlace/create", place);
+  },
+  getPlaces: async () => {
+    const { data } = await SERVICE.get("/safePlace/getPlaces");
+    return data
   }
 };
 

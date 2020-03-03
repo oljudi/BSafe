@@ -1,20 +1,24 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require("mongoose");
 
 const placeSchema = new Schema(
-    {
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            cordinates: Array
-        },
-        properties: {
-            name: String
-        } 
+  {
+    name: String,
+    description: String,
+    geometry: {
+      type: Object
     },
-    {
-        timestamps: true,
-        versionKey: false
+    properties: {
+      type: Object
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
-)
+  },
+  {
+    timestamps: true,
+    versionKey: false
+  }
+);
 
-module.exports = model('Place', placeSchema)
+module.exports = model("Place", placeSchema);

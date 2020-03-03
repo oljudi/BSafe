@@ -95,10 +95,10 @@ function NavBar() {
                         <Link to="/profile">Profile</Link>
                         <br />
                         <br />
-                        <Link to="/profile/contacts">Safe Contacts</Link>
+                        <Link to="/profile/contacts">My Safe Contacts</Link>
                         <br />
                         <br />
-                        <Link to="/safe/places">Safe Places</Link>
+                        <Link to="/addPlaces">My Safe Places</Link>
                         {/* TODO: Routes to app functionalities*/}
                       </DrawerBody>
 

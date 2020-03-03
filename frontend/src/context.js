@@ -29,6 +29,12 @@ class MyProvider extends Component {
       email: "",
       phone: ""
     },
+    formSafePlace: {
+      geometry: null,
+      properties: null,
+      name: '',
+      description: ''
+    },
     loggedUser: null,
     isLogged: false,
     contacts: null
@@ -38,9 +44,24 @@ class MyProvider extends Component {
     this.setState({viewport: newViewPort})
   }
 
-  handleOnSelectMap = (viewport) => {
+  handleSafePlaceSubmit = async e => {
+    e.preventDefault()
+    const form = this.state.formSafePlace
+    this.setState({formSafePlace: {name: '', description: '', geometry: null, properties: null}})
+    return await AUTH_SERVICE.createPlace(form)
+  }
+
+  handleSafePlaceInput = e => {
+    const {formSafePlace} = this.state
+    const {name,value} = e.target
+    formSafePlace[name] = value
+    this.setState({formSafePlace})
+  }
+
+  handleOnSelectMap = (viewport,item) => {
     this.setState({ viewport });
-    console.log("Selected from context: ", this.state);
+    const {properties, geometry} = item
+    this.setState({formSafePlace: {properties, geometry}})
   };
 
   handleLogOut = async () => {
@@ -127,6 +148,8 @@ class MyProvider extends Component {
   render() {
     const {
       state,
+      handleSafePlaceSubmit,
+      handleSafePlaceInput,
       updateViewPort,
       handleOnSelectMap,
       handleLogOut,
@@ -144,6 +167,8 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state,
+          handleSafePlaceSubmit,
+          handleSafePlaceInput,
           updateViewPort,
           handleLogOut,
           handleOnSelectMap,
