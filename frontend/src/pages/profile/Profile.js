@@ -44,8 +44,8 @@ function Profile({ history }) {
                 <br />
                 <Flex justify="space-evenly">
                   <Stack p={4}>
-                    <Link to="/profile/edit">
-                      <Button variantColor="red">Edit Profile</Button>
+                    <Link to="/profile/places">
+                      <Button variantColor="red">Places</Button>
                     </Link>
                   </Stack>
                   <Stack p={4}>

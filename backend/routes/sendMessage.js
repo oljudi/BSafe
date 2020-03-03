@@ -3,8 +3,8 @@ const router = express.Router();
 const User = require("../models/User");
 
 
-const accountSid = "ACa44276a512d6aaa2768746088d389f95";
-const authToken = "36b93aa3c0e7ba1d69e72f3defab132b";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 const { isLoggedIn } = require("../middlewares/auth");
 
