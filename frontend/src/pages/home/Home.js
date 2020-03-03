@@ -28,8 +28,7 @@ const Home = () => {
           center: [-99.1353989, 19.4326018],
           zoom: 10
         });
-        PLACE_SERVICE.getPlaces().then(res => {
-          console.log(res);
+        PLACE_SERVICE.getAllPlaces().then(res => {
           res.places.forEach(function(marker) {
             const el = document.createElement("div");
             el.className = "markerSafe";

@@ -49,10 +49,12 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const contacts = require('./routes/contacts') 
 const places = require('./routes/safePlace')
+const sms = require('./routes/sendMessage')
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/contacts', contacts)
 app.use('/safeplace', places)
+app.use('/sms', sms)
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

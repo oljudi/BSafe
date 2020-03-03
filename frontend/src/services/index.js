@@ -39,6 +39,10 @@ const MY_SERVICE = {
   getPlaces: async () => {
     const { data } = await SERVICE.get("/safePlace/getPlaces");
     return data
+  },
+  getAllPlaces: async () => {
+    const {data} = await SERVICE.get('/safePlace/getAllPlaces')
+    return data
   }
 };
 
