@@ -1,13 +1,7 @@
 import React, { useContext } from "react";
-import { Flex, Button, Box, useToast } from "@chakra-ui/core";
+import { Flex, Button, useToast, Text, Image } from "@chakra-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMapMarkerAlt,
-  faSignInAlt,
-  faExclamationCircle,
-  faEye,
-  faUserShield
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { MyContext } from "../context";
 
@@ -52,27 +46,27 @@ function Footer() {
               position="fixed"
             >
               <Link to="/c5view">
-                <FontAwesomeIcon icon={faEye} size="2x" color="white" />
-              </Link>
-              <Link to="/addPlaces">
-                <FontAwesomeIcon
-                  icon={faMapMarkerAlt}
-                  size="2x"
-                  color="white"
+                <Image
+                  size="50px"
+                  objectFit="cover"
+                  src="/images/cctv.png"
+                  alt="Camera"
                 />
+                <Text fontSize="md" color="white">
+                  C5 Cameras
+                </Text>
               </Link>
-              <Box>
-                <Button
-                  variantColor="transparent"
-                  onClick={() => sendHelpRequest()}
-                >
-                  <FontAwesomeIcon
-                    icon={faExclamationCircle}
-                    size="3x"
-                    color="#CA3E47"
-                  />
-                </Button>
-              </Box>
+              <Button
+                variantColor="transparent"
+                onClick={() => sendHelpRequest()}
+              >
+                <Image
+                  size="60px"
+                  objectFit="cover"
+                  src="https://image.flaticon.com/icons/svg/595/595031.svg"
+                  alt="Camera"
+                />
+              </Button>
             </Flex>
           );
         else {
@@ -88,10 +82,21 @@ function Footer() {
               position="fixed"
             >
               <Link to="/c5view">
-                <FontAwesomeIcon icon={faEye} size="2x" color="white" />
+                <Image
+                  size="50px"
+                  objectFit="cover"
+                  src="/images/cctv.png"
+                  alt="Camera"
+                />
+                <Text fontSize="md" color="white">
+                  C5 Cameras
+                </Text>
               </Link>
               <Link to="/login">
                 <FontAwesomeIcon icon={faSignInAlt} size="2x" color="white" />
+                <Text fontSize="md" color="white">
+                  Login
+                </Text>
               </Link>
             </Flex>
           );

@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Flex, Stack, Avatar, Heading, Button } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { MyContext } from "../../context";
 
 function Profile({ history }) {
-  const context = useContext(MyContext);
   return (
     <MyContext.Consumer>
       {context => {

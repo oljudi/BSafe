@@ -14,10 +14,11 @@ import {
   useDisclosure,
   Text,
   Stack,
-  Avatar
+  Avatar,
+  Image
 } from "@chakra-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserShield, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/fontawesome-free-brands";
 import { NavLink, Link } from "react-router-dom";
 import { MyContext } from "../context";
@@ -55,10 +56,11 @@ function NavBar() {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <FontAwesomeIcon
-                    icon={faUserShield}
-                    size="2x"
-                    color="white"
+                  <Image
+                    size="50px"
+                    objectFit="cover"
+                    src="/images/protection.png"
+                    alt="Segun Adebayo"
                   />
                   <Heading px={3} color="white" as="h2" size="xl">
                     BSafe
@@ -103,7 +105,7 @@ function NavBar() {
 
                     <DrawerFooter>
                       <Text fontSize="md">
-                        Ironhack WDFT 2020 - @oljudi
+                        Ironhack WDFT 2020 - oljudi
                         <FontAwesomeIcon icon={faGithub} />
                       </Text>
                       <Button
@@ -136,10 +138,11 @@ function NavBar() {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <FontAwesomeIcon
-                    icon={faUserShield}
-                    size="2x"
-                    color="white"
+                  <Image
+                    size="50px"
+                    objectFit="cover"
+                    src="/images/protection.png"
+                    alt="Segun Adebayo"
                   />
                   <Heading px={3} color="white" as="h2" size="xl">
                     BSafe
