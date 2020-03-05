@@ -1,4 +1,4 @@
-# ![image](https://image.flaticon.com/icons/svg/1518/1518789.svg =50x)  BSafe
+# ![image](https://image.flaticon.com/icons/svg/1518/1518789.svg)  BSafe
 
 The principal object of this app, it's to visualize the criminal rate of Mexico City letting the user know if they are in a hot point, also the users can add safe places markers to the map so others users  can go there and ask for help, and extra implementation it's the use of SMS messaging so the users can add safe contacts and alert them if they thing they are in danger.
 
