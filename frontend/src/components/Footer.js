@@ -61,7 +61,7 @@ function Footer() {
                 onClick={() => sendHelpRequest()}
               >
                 <Image
-                  size="60px"
+                  size="50px"
                   objectFit="cover"
                   src="https://image.flaticon.com/icons/svg/595/595031.svg"
                   alt="Camera"
