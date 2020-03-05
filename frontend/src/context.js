@@ -41,8 +41,8 @@ class MyProvider extends Component {
     places: null
   };
 
-  handleHelpRequest = async () => {
-    return await AUTH_SERVICE.sendSMS();
+  handleHelpRequest = async center => {
+    return await AUTH_SERVICE.sendSMS(center);
   };
 
   handleDeletePlace = async e => {

@@ -9,24 +9,27 @@ function Footer() {
   const context = useContext(MyContext);
   const toast = useToast();
 
-  const sendHelpRequest = () => {
-    context
-      .handleHelpRequest()
-      .then(res => {
-        toast({
-          title: "SMS Send",
-          description:
-            "Help Request sended to your safe contacts, please contact 911 for help",
-          status: "success"
+  const sendHelpRequest = async () => {
+    await navigator.geolocation.getCurrentPosition(pos => {
+      const center = [pos.coords.longitude, pos.coords.latitude]
+      context
+        .handleHelpRequest(center)
+        .then(res => {
+          toast({
+            title: "SMS Send",
+            description:
+              "Help Request sended to your safe contacts, please contact 911 for help",
+            status: "success"
+          });
+        })
+        .catch(err => {
+          toast({
+            title: "Error",
+            description: "Can't send the sms, please contact 911 for help",
+            status: "error"
+          });
         });
-      })
-      .catch(err => {
-        toast({
-          title: "Error",
-          description: "Can't send the sms, please contact 911 for help",
-          status: "error"
-        });
-      });
+    })
   };
 
   return (
