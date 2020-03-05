@@ -41,5 +41,5 @@ On /backend  run:
  - Mapbox-GL 1.8.0
 
 
-#### Development by:  @Oljudi - Diego Olvera Juarez
+#### @Oljudi - Diego Olvera Juarez
  **IronHack-Bootcamp** Jan 2020
